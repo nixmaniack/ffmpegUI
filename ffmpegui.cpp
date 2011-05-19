@@ -105,17 +105,22 @@ void ffmpegui::executeCommand()
 {
     QStringList args;
 
-    args << "-i";
-    args << ui->sourcePath->text();
-    args << "-y";
-    args << "-s"; args << ui->comboResolution->currentText();
-    args << "-r"; args << ui->comboFramerate->currentText();
-    args << "-b"; args << ui->comboBitrate->currentText();
-    args << "-ar"; args << ui->comboSamplerate->currentText();
-    args << "-ab"; args << ui->comboBitrate->currentText();
-    args << ui->destPath->text();
 
     if (ui->psp->isChecked()){
+        // General
+
+        args << "-i";
+        args << ui->sourcePath->text();
+        args << "-y";
+        args << "-s"; args << ui->comboResolution->currentText();
+        args << "-r"; args << ui->comboFramerate->currentText();
+        args << "-b"; args << ui->comboBitrate->currentText();
+        args << "-ar"; args << ui->comboSamplerate->currentText();
+        args << "-ab"; args << ui->comboBitrate->currentText();
+        args << ui->destPath->text();
+
+        // Specific
+
         args << "-vcodec"; args << "libxvid";
         args << "-acodec"; args << "libfaac";
         args << "-ac"; args << "2";
@@ -123,6 +128,15 @@ void ffmpegui::executeCommand()
     }
 
     if(ui->screencast->isChecked()){
+        // General
+
+        args << "-i";
+        args << ui->sourcePath->text();
+        args << "-y";
+        args << "-s"; args << ui->comboResolution->currentText();
+
+        args << ui->destPath->text();
+
         args << "-vcodec"; args << "libx264";
         args << "-acodec"; args << "libfaac";
         args << "-preset"; args << "slow";
@@ -132,6 +146,18 @@ void ffmpegui::executeCommand()
     }
 
     if(ui->android->isChecked()){
+
+//        args << "-i";
+//        args << ui->sourcePath->text();
+//        args << "-y";
+//        args << "-s"; args << ui->comboResolution->currentText();
+//        args << "-r"; args << ui->comboFramerate->currentText();
+//        args << "-b"; args << ui->comboBitrate->currentText();
+//        args << "-ar"; args << ui->comboSamplerate->currentText();
+//        args << "-ab"; args << ui->comboBitrate->currentText();
+//        args << ui->destPath->text();
+
+
         //Add android specific options here
 
         args << "-vcodec"; args << "libx264";
